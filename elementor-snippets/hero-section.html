@@ -1,0 +1,80 @@
+<!-- ============================================
+     DAYTEMIS - Hero Section para Elementor
+
+     CÓMO USAR:
+     1. En Elementor, añade un widget "HTML"
+     2. Pega este código
+     3. Ajusta los textos a tu gusto
+     ============================================ -->
+
+<section class="dt-hero">
+  <div class="dt-hero-content">
+    <!-- Logo o ícono animado -->
+    <div style="margin-bottom: 30px;">
+      <svg width="80" height="80" viewBox="0 0 80 80" style="filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.5));">
+        <defs>
+          <linearGradient id="dt-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#00f0ff" />
+            <stop offset="100%" style="stop-color:#7b2fff" />
+          </linearGradient>
+        </defs>
+        <polygon points="40,5 75,25 75,55 40,75 5,55 5,25" fill="none" stroke="url(#dt-logo-grad)" stroke-width="2">
+          <animateTransform attributeName="transform" type="rotate" from="0 40 40" to="360 40 40" dur="20s" repeatCount="indefinite"/>
+        </polygon>
+        <text x="40" y="46" text-anchor="middle" fill="url(#dt-logo-grad)" font-size="24" font-weight="700" font-family="Inter, sans-serif">D</text>
+      </svg>
+    </div>
+
+    <!-- Título principal con gradiente -->
+    <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -2px; background: linear-gradient(135deg, #00f0ff, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">
+      El Futuro de la<br>Automatización Digital
+    </h1>
+
+    <!-- Subtítulo con typing effect -->
+    <p style="font-size: 1.2rem; color: #8888aa; max-width: 550px; margin: 0 auto 40px; line-height: 1.7;">
+      Soluciones inteligentes que transforman tu negocio.
+      <span class="dt-typing dt-text-glow" data-texts="Innovación|Tecnología|Resultados|Daytemis" style="color: #00f0ff;"></span>
+    </p>
+
+    <!-- Botones CTA -->
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="#productos" class="dt-btn" style="text-decoration: none;">
+        Explorar Servicios
+      </a>
+      <a href="#contacto" class="dt-btn-outline" style="text-decoration: none; display: inline-block; background: transparent; border: 2px solid #00f0ff; color: #00f0ff; border-radius: 50px; padding: 14px 36px; font-weight: 700; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.4s ease;">
+        Contactar
+      </a>
+    </div>
+
+    <!-- Stats rápidas -->
+    <div style="display: flex; gap: 50px; justify-content: center; margin-top: 60px; flex-wrap: wrap;">
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">500+</div>
+        <div style="color: #8888aa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px;">Clientes</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">99%</div>
+        <div style="color: #8888aa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px;">Satisfacción</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">24/7</div>
+        <div style="color: #8888aa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px;">Soporte</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Scroll indicator -->
+<div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); text-align: center;">
+  <div style="width: 24px; height: 40px; border: 2px solid rgba(0, 240, 255, 0.3); border-radius: 12px; margin: 0 auto 8px; position: relative;">
+    <div style="width: 4px; height: 8px; background: #00f0ff; border-radius: 2px; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); animation: dt-scroll-indicator 1.5s ease-in-out infinite;"></div>
+  </div>
+  <span style="color: #8888aa; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px;">Scroll</span>
+</div>
+
+<style>
+@keyframes dt-scroll-indicator {
+  0%, 100% { opacity: 0; top: 8px; }
+  50% { opacity: 1; top: 20px; }
+}
+</style>

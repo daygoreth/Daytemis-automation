@@ -1,0 +1,60 @@
+<!-- ============================================
+     DAYTEMIS - Service/Feature Cards Futuristas
+
+     CÓMO USAR:
+     1. En Elementor, añade un widget "HTML"
+     2. Pega este código
+     3. Ajusta textos e iconos a tus servicios
+     ============================================ -->
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; padding: 40px 0;">
+
+  <!-- Card 1 -->
+  <div class="dt-service-card" style="background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 40px 30px; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);">
+    <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #00f0ff, #7b2fff); opacity: 0; transition: opacity 0.4s;"></div>
+    <!-- Icon -->
+    <div style="width: 60px; height: 60px; border-radius: 16px; background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(123,47,255,0.1)); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 1px solid rgba(0,240,255,0.2);">
+      <svg width="28" height="28" fill="none" stroke="#00f0ff" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+      </svg>
+    </div>
+    <h3 style="color: #e0e0ff; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px;">Automatización</h3>
+    <p style="color: #8888aa; font-size: 0.95rem; line-height: 1.7; margin: 0;">Optimiza tus procesos con flujos de trabajo automatizados e inteligentes.</p>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="dt-service-card" style="background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 40px 30px; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);">
+    <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #7b2fff, #ff2d95); opacity: 0; transition: opacity 0.4s;"></div>
+    <div style="width: 60px; height: 60px; border-radius: 16px; background: linear-gradient(135deg, rgba(123,47,255,0.1), rgba(255,45,149,0.1)); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 1px solid rgba(123,47,255,0.2);">
+      <svg width="28" height="28" fill="none" stroke="#7b2fff" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+      </svg>
+    </div>
+    <h3 style="color: #e0e0ff; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px;">Ahorro de Tiempo</h3>
+    <p style="color: #8888aa; font-size: 0.95rem; line-height: 1.7; margin: 0;">Reduce horas de trabajo manual con nuestras soluciones inteligentes.</p>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="dt-service-card" style="background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 40px 30px; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);">
+    <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ff2d95, #00f0ff); opacity: 0; transition: opacity 0.4s;"></div>
+    <div style="width: 60px; height: 60px; border-radius: 16px; background: linear-gradient(135deg, rgba(255,45,149,0.1), rgba(0,240,255,0.1)); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 1px solid rgba(255,45,149,0.2);">
+      <svg width="28" height="28" fill="none" stroke="#ff2d95" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <h3 style="color: #e0e0ff; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px;">Análisis en Tiempo Real</h3>
+    <p style="color: #8888aa; font-size: 0.95rem; line-height: 1.7; margin: 0;">Monitorea métricas clave y toma decisiones basadas en datos reales.</p>
+  </div>
+
+</div>
+
+<style>
+.dt-service-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(0, 240, 255, 0.2) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 240, 255, 0.1) !important;
+}
+.dt-service-card:hover > div:first-child {
+  opacity: 1 !important;
+}
+</style>

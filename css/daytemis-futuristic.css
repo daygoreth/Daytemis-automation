@@ -1,0 +1,688 @@
+/* ============================================
+   DAYTEMIS.COM - Futuristic Design System
+   Compatible con Woodmart Theme + Elementor
+   ============================================ */
+
+/* ---- CSS Variables / Design Tokens ---- */
+:root {
+  /* Colores principales futuristas */
+  --dt-primary: #00f0ff;       /* Cyan neón */
+  --dt-secondary: #7b2fff;     /* Violeta eléctrico */
+  --dt-accent: #ff2d95;        /* Rosa neón */
+  --dt-dark: #0a0a1a;          /* Negro profundo */
+  --dt-dark-soft: #12122a;     /* Negro suave */
+  --dt-dark-card: #1a1a3e;     /* Fondo tarjetas */
+  --dt-text: #e0e0ff;          /* Texto claro */
+  --dt-text-muted: #8888aa;    /* Texto secundario */
+  --dt-glass: rgba(255, 255, 255, 0.05);
+  --dt-glass-border: rgba(255, 255, 255, 0.1);
+  --dt-glow-cyan: 0 0 20px rgba(0, 240, 255, 0.3);
+  --dt-glow-violet: 0 0 20px rgba(123, 47, 255, 0.3);
+  --dt-glow-pink: 0 0 20px rgba(255, 45, 149, 0.3);
+  --dt-gradient-main: linear-gradient(135deg, var(--dt-primary), var(--dt-secondary));
+  --dt-gradient-warm: linear-gradient(135deg, var(--dt-accent), var(--dt-secondary));
+  --dt-gradient-bg: linear-gradient(180deg, #0a0a1a 0%, #0f0f2e 50%, #0a0a1a 100%);
+  --dt-radius: 16px;
+  --dt-radius-sm: 8px;
+  --dt-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ---- Reset & Base ---- */
+body.daytemis-futuristic {
+  background: var(--dt-dark) !important;
+  color: var(--dt-text) !important;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !important;
+  overflow-x: hidden;
+}
+
+body.daytemis-futuristic::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--dt-gradient-bg);
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Grid de fondo sutil */
+body.daytemis-futuristic::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: -1;
+  pointer-events: none;
+  animation: dt-grid-move 20s linear infinite;
+}
+
+@keyframes dt-grid-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(60px); }
+}
+
+/* ============================================
+   GLASSMORPHISM CARDS
+   ============================================ */
+.dt-glass,
+body.daytemis-futuristic .wd-entities-title,
+body.daytemis-futuristic .product-element-top,
+body.daytemis-futuristic .woodmart-info-box,
+body.daytemis-futuristic .woodmart-banner-content {
+  background: var(--dt-glass) !important;
+  backdrop-filter: blur(20px) saturate(1.5) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.5) !important;
+  border: 1px solid var(--dt-glass-border) !important;
+  border-radius: var(--dt-radius) !important;
+  transition: var(--dt-transition) !important;
+}
+
+.dt-glass:hover,
+body.daytemis-futuristic .woodmart-info-box:hover,
+body.daytemis-futuristic .woodmart-banner-content:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(0, 240, 255, 0.3) !important;
+  box-shadow: var(--dt-glow-cyan) !important;
+  transform: translateY(-4px) !important;
+}
+
+/* ============================================
+   HEADER FUTURISTA
+   ============================================ */
+body.daytemis-futuristic .whb-header,
+body.daytemis-futuristic .woodmart-header-wrap {
+  background: rgba(10, 10, 26, 0.85) !important;
+  backdrop-filter: blur(30px) saturate(1.8) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(1.8) !important;
+  border-bottom: 1px solid var(--dt-glass-border) !important;
+  transition: var(--dt-transition) !important;
+}
+
+body.daytemis-futuristic .whb-header.whb-scroll {
+  background: rgba(10, 10, 26, 0.95) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 240, 255, 0.05) !important;
+}
+
+/* Nav links efecto neón */
+body.daytemis-futuristic .whb-header .menu-item > a {
+  color: var(--dt-text) !important;
+  position: relative;
+  transition: var(--dt-transition) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+body.daytemis-futuristic .whb-header .menu-item > a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--dt-gradient-main);
+  transition: var(--dt-transition);
+  transform: translateX(-50%);
+  box-shadow: var(--dt-glow-cyan);
+}
+
+body.daytemis-futuristic .whb-header .menu-item > a:hover {
+  color: var(--dt-primary) !important;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+body.daytemis-futuristic .whb-header .menu-item > a:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.dt-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.dt-hero-content {
+  text-align: center;
+  z-index: 2;
+  max-width: 900px;
+  padding: 40px;
+}
+
+.dt-hero h1,
+.dt-hero .elementor-heading-title {
+  font-size: clamp(2.5rem, 6vw, 5rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -2px !important;
+  background: var(--dt-gradient-main);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 24px !important;
+  animation: dt-text-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes dt-text-glow {
+  0% { filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3)); }
+  100% { filter: drop-shadow(0 0 25px rgba(123, 47, 255, 0.4)); }
+}
+
+.dt-hero p,
+.dt-hero .elementor-widget-text-editor {
+  font-size: 1.25rem !important;
+  color: var(--dt-text-muted) !important;
+  max-width: 600px;
+  margin: 0 auto 40px !important;
+  line-height: 1.7 !important;
+}
+
+/* ============================================
+   BOTONES FUTURISTAS
+   ============================================ */
+.dt-btn,
+body.daytemis-futuristic .btn-color-primary,
+body.daytemis-futuristic .button.add_to_cart_button,
+body.daytemis-futuristic .single_add_to_cart_button,
+body.daytemis-futuristic .elementor-button,
+body.daytemis-futuristic .woodmart-button-wrapper a {
+  background: var(--dt-gradient-main) !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 14px 36px !important;
+  color: var(--dt-dark) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: var(--dt-transition) !important;
+  cursor: pointer !important;
+  z-index: 1 !important;
+}
+
+.dt-btn::before,
+body.daytemis-futuristic .btn-color-primary::before,
+body.daytemis-futuristic .elementor-button::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent) !important;
+  transition: 0.5s !important;
+  z-index: -1 !important;
+}
+
+.dt-btn:hover::before,
+body.daytemis-futuristic .btn-color-primary:hover::before,
+body.daytemis-futuristic .elementor-button:hover::before {
+  left: 100% !important;
+}
+
+.dt-btn:hover,
+body.daytemis-futuristic .btn-color-primary:hover,
+body.daytemis-futuristic .elementor-button:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 10px 40px rgba(0, 240, 255, 0.4), var(--dt-glow-cyan) !important;
+}
+
+/* Botón secundario / outline */
+.dt-btn-outline,
+body.daytemis-futuristic .btn-color-white {
+  background: transparent !important;
+  border: 2px solid var(--dt-primary) !important;
+  color: var(--dt-primary) !important;
+  border-radius: 50px !important;
+  padding: 12px 34px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  transition: var(--dt-transition) !important;
+}
+
+.dt-btn-outline:hover,
+body.daytemis-futuristic .btn-color-white:hover {
+  background: var(--dt-primary) !important;
+  color: var(--dt-dark) !important;
+  box-shadow: var(--dt-glow-cyan) !important;
+}
+
+/* ============================================
+   PRODUCTOS / WOOCOMMERCE
+   ============================================ */
+body.daytemis-futuristic .product-grid-item,
+body.daytemis-futuristic .woodmart-product-categories .category-grid-item {
+  background: var(--dt-dark-card) !important;
+  border: 1px solid var(--dt-glass-border) !important;
+  border-radius: var(--dt-radius) !important;
+  overflow: hidden !important;
+  transition: var(--dt-transition) !important;
+  position: relative !important;
+}
+
+body.daytemis-futuristic .product-grid-item::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: var(--dt-gradient-main) !important;
+  opacity: 0 !important;
+  transition: var(--dt-transition) !important;
+}
+
+body.daytemis-futuristic .product-grid-item:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(0, 240, 255, 0.2) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--dt-glow-cyan) !important;
+}
+
+body.daytemis-futuristic .product-grid-item:hover::before {
+  opacity: 1 !important;
+}
+
+/* Imagen del producto */
+body.daytemis-futuristic .product-image-link img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+body.daytemis-futuristic .product-grid-item:hover .product-image-link img {
+  transform: scale(1.08) !important;
+}
+
+/* Título del producto */
+body.daytemis-futuristic .wd-entities-title a,
+body.daytemis-futuristic .product-title a {
+  color: var(--dt-text) !important;
+  font-weight: 600 !important;
+  transition: var(--dt-transition) !important;
+}
+
+body.daytemis-futuristic .wd-entities-title a:hover,
+body.daytemis-futuristic .product-title a:hover {
+  color: var(--dt-primary) !important;
+}
+
+/* Precio */
+body.daytemis-futuristic .price,
+body.daytemis-futuristic .woocommerce-Price-amount {
+  color: var(--dt-primary) !important;
+  font-weight: 700 !important;
+  font-size: 1.1em !important;
+}
+
+body.daytemis-futuristic .price del {
+  color: var(--dt-text-muted) !important;
+  opacity: 0.5 !important;
+}
+
+body.daytemis-futuristic .price ins {
+  color: var(--dt-accent) !important;
+  text-decoration: none !important;
+}
+
+/* Sale badge */
+body.daytemis-futuristic .onsale,
+body.daytemis-futuristic .product-label {
+  background: var(--dt-gradient-warm) !important;
+  color: white !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: 1px !important;
+  box-shadow: var(--dt-glow-pink) !important;
+}
+
+/* ============================================
+   SECCIONES Y CONTENIDO
+   ============================================ */
+body.daytemis-futuristic .elementor-section {
+  position: relative;
+}
+
+/* Separador de secciones con gradiente */
+.dt-section-divider {
+  width: 80px;
+  height: 4px;
+  background: var(--dt-gradient-main);
+  border-radius: 2px;
+  margin: 0 auto 30px;
+  box-shadow: var(--dt-glow-cyan);
+}
+
+/* Títulos de sección */
+body.daytemis-futuristic .title.slider-nav-title,
+body.daytemis-futuristic .woodmart-title-wrapper .title,
+body.daytemis-futuristic .elementor-heading-title {
+  color: var(--dt-text) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.5px !important;
+}
+
+.dt-title-gradient,
+body.daytemis-futuristic .elementor-heading-title.dt-gradient {
+  background: var(--dt-gradient-main);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================
+   BANNERS / PROMO BOXES
+   ============================================ */
+body.daytemis-futuristic .woodmart-banner {
+  border-radius: var(--dt-radius) !important;
+  overflow: hidden !important;
+  position: relative !important;
+  transition: var(--dt-transition) !important;
+}
+
+body.daytemis-futuristic .woodmart-banner::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(123, 47, 255, 0.1)) !important;
+  opacity: 0 !important;
+  transition: var(--dt-transition) !important;
+}
+
+body.daytemis-futuristic .woodmart-banner:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.daytemis-futuristic .woodmart-banner:hover::after {
+  opacity: 1 !important;
+}
+
+/* ============================================
+   FOOTER FUTURISTA
+   ============================================ */
+body.daytemis-futuristic footer,
+body.daytemis-futuristic .footer-container,
+body.daytemis-futuristic .woodmart-prefooter {
+  background: var(--dt-dark-soft) !important;
+  border-top: 1px solid var(--dt-glass-border) !important;
+  color: var(--dt-text-muted) !important;
+}
+
+body.daytemis-futuristic .footer-widget-area .widget-title {
+  color: var(--dt-text) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  font-size: 14px !important;
+  position: relative !important;
+  padding-bottom: 12px !important;
+}
+
+body.daytemis-futuristic .footer-widget-area .widget-title::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 40px !important;
+  height: 2px !important;
+  background: var(--dt-gradient-main) !important;
+  box-shadow: var(--dt-glow-cyan) !important;
+}
+
+body.daytemis-futuristic footer a {
+  color: var(--dt-text-muted) !important;
+  transition: var(--dt-transition) !important;
+}
+
+body.daytemis-futuristic footer a:hover {
+  color: var(--dt-primary) !important;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+/* ============================================
+   FORMULARIOS
+   ============================================ */
+body.daytemis-futuristic input[type="text"],
+body.daytemis-futuristic input[type="email"],
+body.daytemis-futuristic input[type="password"],
+body.daytemis-futuristic input[type="search"],
+body.daytemis-futuristic input[type="tel"],
+body.daytemis-futuristic input[type="number"],
+body.daytemis-futuristic textarea,
+body.daytemis-futuristic select,
+body.daytemis-futuristic .select2-container .select2-selection {
+  background: var(--dt-dark-card) !important;
+  border: 1px solid var(--dt-glass-border) !important;
+  border-radius: var(--dt-radius-sm) !important;
+  color: var(--dt-text) !important;
+  padding: 14px 18px !important;
+  transition: var(--dt-transition) !important;
+  font-size: 15px !important;
+}
+
+body.daytemis-futuristic input:focus,
+body.daytemis-futuristic textarea:focus,
+body.daytemis-futuristic select:focus {
+  border-color: var(--dt-primary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15), var(--dt-glow-cyan) !important;
+  outline: none !important;
+}
+
+/* ============================================
+   SCROLL ANIMATIONS (activadas por JS)
+   ============================================ */
+.dt-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dt-fade-up.dt-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dt-fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dt-fade-left.dt-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.dt-fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dt-fade-right.dt-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.dt-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dt-scale-in.dt-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Delay helpers */
+.dt-delay-1 { transition-delay: 0.1s !important; }
+.dt-delay-2 { transition-delay: 0.2s !important; }
+.dt-delay-3 { transition-delay: 0.3s !important; }
+.dt-delay-4 { transition-delay: 0.4s !important; }
+.dt-delay-5 { transition-delay: 0.5s !important; }
+
+/* ============================================
+   CURSOR PERSONALIZADO (opcional)
+   ============================================ */
+.dt-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--dt-primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+  mix-blend-mode: difference;
+}
+
+.dt-cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--dt-primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.08s ease;
+}
+
+.dt-cursor.dt-cursor-hover {
+  transform: scale(2.5);
+  background: rgba(0, 240, 255, 0.1);
+  border-color: var(--dt-accent);
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   ============================================ */
+body.daytemis-futuristic ::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.daytemis-futuristic ::-webkit-scrollbar-track {
+  background: var(--dt-dark);
+}
+
+body.daytemis-futuristic ::-webkit-scrollbar-thumb {
+  background: var(--dt-gradient-main);
+  border-radius: 4px;
+}
+
+body.daytemis-futuristic ::-webkit-scrollbar-thumb:hover {
+  background: var(--dt-primary);
+}
+
+/* ============================================
+   LOADER / PRELOADER
+   ============================================ */
+.dt-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--dt-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.dt-preloader.dt-loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dt-preloader-ring {
+  width: 60px;
+  height: 60px;
+  border: 3px solid transparent;
+  border-top-color: var(--dt-primary);
+  border-right-color: var(--dt-secondary);
+  border-radius: 50%;
+  animation: dt-spin 1s linear infinite;
+}
+
+@keyframes dt-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   TEXTO CON EFECTO TYPING / GLOW
+   ============================================ */
+.dt-text-glow {
+  animation: dt-text-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes dt-text-pulse {
+  0% {
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5), 0 0 10px rgba(0, 240, 255, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 40px rgba(123, 47, 255, 0.4);
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  body.daytemis-futuristic .dt-hero h1,
+  body.daytemis-futuristic .dt-hero .elementor-heading-title {
+    font-size: 2rem !important;
+    letter-spacing: -1px !important;
+  }
+
+  .dt-cursor,
+  .dt-cursor-dot {
+    display: none !important;
+  }
+
+  body.daytemis-futuristic .product-grid-item:hover {
+    transform: translateY(-4px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .dt-btn,
+  body.daytemis-futuristic .elementor-button {
+    padding: 12px 24px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.dt-text-cyan { color: var(--dt-primary) !important; }
+.dt-text-violet { color: var(--dt-secondary) !important; }
+.dt-text-pink { color: var(--dt-accent) !important; }
+.dt-bg-glass { background: var(--dt-glass) !important; backdrop-filter: blur(20px) !important; }
+.dt-border-glow { border: 1px solid var(--dt-primary) !important; box-shadow: var(--dt-glow-cyan) !important; }
+.dt-gradient-text {
+  background: var(--dt-gradient-main) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+.dt-shadow-glow { box-shadow: var(--dt-glow-cyan) !important; }
+.dt-shadow-glow-violet { box-shadow: var(--dt-glow-violet) !important; }
+.dt-shadow-glow-pink { box-shadow: var(--dt-glow-pink) !important; }
