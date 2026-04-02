@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daytemis.com - Preview Diseño Futurista</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/daytemis-futuristic.css">
+  <style>
+    /* Reset para el preview standalone */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    a { text-decoration: none; }
+
+    /* ---- HEADER SIMULADO (como se vería en Woodmart) ---- */
+    .preview-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 26, 0.85);
+      backdrop-filter: blur(30px) saturate(1.8);
+      -webkit-backdrop-filter: blur(30px) saturate(1.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0 40px;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .preview-header.scrolled {
+      background: rgba(10, 10, 26, 0.95);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 240, 255, 0.05);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00f0ff, #7b2fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #e0e0ff;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      transition: all 0.4s ease;
+      padding: 8px 0;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #00f0ff, #7b2fff);
+      transition: all 0.4s ease;
+      transform: translateX(-50%);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    }
+    .nav-links a:hover {
+      color: #00f0ff;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .header-icons {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .header-icon {
+      color: #e0e0ff;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .header-icon:hover {
+      color: #00f0ff;
+      filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.4));
+    }
+
+    /* ---- SECCIÓN CONTENEDOR ---- */
+    .section {
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #00f0ff;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: #e0e0ff;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    .section-subtitle {
+      color: #8888aa;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 550px;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    /* ---- PRODUCTS GRID ---- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .product-card {
+      background: #1a1a3e;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      cursor: pointer;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, #00f0ff, #7b2fff);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 240, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.15);
+    }
+    .product-card:hover::before { opacity: 1; }
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #1a1a3e, #12122a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-img svg {
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .product-card:hover .product-img svg {
+      transform: scale(1.1);
+    }
+    .product-info {
+      padding: 20px;
+    }
+    .product-name {
+      color: #e0e0ff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+    .product-card:hover .product-name { color: #00f0ff; }
+    .product-price {
+      color: #00f0ff;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .product-price .old-price {
+      color: #8888aa;
+      text-decoration: line-through;
+      font-size: 0.85rem;
+      margin-right: 8px;
+      font-weight: 400;
+    }
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, #ff2d95, #7b2fff);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(255, 45, 149, 0.3);
+    }
+    .product-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #00f0ff, #7b2fff);
+      border: none;
+      color: #0a0a1a;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-btn:hover {
+      box-shadow: 0 5px 30px rgba(0, 240, 255, 0.4);
+    }
+
+    /* ---- SERVICE CARDS ---- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 40px 30px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .service-card:nth-child(1)::before { background: linear-gradient(90deg, #00f0ff, #7b2fff); }
+    .service-card:nth-child(2)::before { background: linear-gradient(90deg, #7b2fff, #ff2d95); }
+    .service-card:nth-child(3)::before { background: linear-gradient(90deg, #ff2d95, #00f0ff); }
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 240, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 240, 255, 0.1);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .service-card:nth-child(1) .service-icon {
+      background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(123,47,255,0.1));
+      border: 1px solid rgba(0,240,255,0.2);
+    }
+    .service-card:nth-child(2) .service-icon {
+      background: linear-gradient(135deg, rgba(123,47,255,0.1), rgba(255,45,149,0.1));
+      border: 1px solid rgba(123,47,255,0.2);
+    }
+    .service-card:nth-child(3) .service-icon {
+      background: linear-gradient(135deg, rgba(255,45,149,0.1), rgba(0,240,255,0.1));
+      border: 1px solid rgba(255,45,149,0.2);
+    }
+    .service-title {
+      color: #e0e0ff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .service-desc {
+      color: #8888aa;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ---- BANNER / PROMO ---- */
+    .promo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .promo-banner {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      padding: 50px 40px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+    .promo-banner:first-child {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(123, 47, 255, 0.1));
+      border: 1px solid rgba(0, 240, 255, 0.15);
+    }
+    .promo-banner:last-child {
+      background: linear-gradient(135deg, rgba(255, 45, 149, 0.15), rgba(123, 47, 255, 0.1));
+      border: 1px solid rgba(255, 45, 149, 0.15);
+    }
+    .promo-banner:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+    .promo-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #00f0ff;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .promo-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #e0e0ff;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    /* ---- TESTIMONIAL ---- */
+    .testimonial-card {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(0, 240, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+    }
+    .testimonial-text {
+      color: #e0e0ff;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f0ff, #7b2fff);
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #0a0a1a;
+      font-size: 1.1rem;
+    }
+    .testimonial-name {
+      color: #e0e0ff;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .testimonial-role {
+      color: #8888aa;
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+
+    /* ---- NEWSLETTER / CTA ---- */
+    .cta-section {
+      text-align: center;
+      padding: 80px 40px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: 30px auto 0;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-input {
+      flex: 1;
+      background: #1a1a3e;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 14px 24px;
+      color: #e0e0ff;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .cta-input:focus {
+      border-color: #00f0ff;
+      box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15), 0 0 20px rgba(0, 240, 255, 0.1);
+    }
+    .cta-input::placeholder { color: #8888aa; }
+
+    /* ---- FOOTER ---- */
+    .preview-footer {
+      background: #12122a;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 60px 40px 30px;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-brand p {
+      color: #8888aa;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+    .footer-title {
+      color: #e0e0ff;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(135deg, #00f0ff, #7b2fff);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a {
+      color: #8888aa;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+    .footer-links a:hover {
+      color: #00f0ff;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      color: #8888aa;
+      font-size: 0.8rem;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .promo-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .cta-form { flex-direction: column; }
+      .section { padding: 60px 20px; }
+    }
+
+    /* ---- PREVIEW BADGE ---- */
+    .preview-badge {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #00f0ff, #7b2fff);
+      color: #0a0a1a;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      z-index: 99998;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+    }
+  </style>
+</head>
+<body class="daytemis-futuristic">
+
+  <!-- ============ HEADER ============ -->
+  <header class="preview-header" id="header">
+    <div class="header-inner">
+      <div class="logo">DAYTEMIS</div>
+      <ul class="nav-links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Productos</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <div class="header-icons">
+        <svg class="header-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <svg class="header-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg class="header-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="dt-hero" style="padding-top: 70px;">
+    <div class="dt-hero-content">
+      <div style="margin-bottom: 30px;">
+        <svg width="80" height="80" viewBox="0 0 80 80" style="filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.5));">
+          <defs>
+            <linearGradient id="dt-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#00f0ff" />
+              <stop offset="100%" style="stop-color:#7b2fff" />
+            </linearGradient>
+          </defs>
+          <polygon points="40,5 75,25 75,55 40,75 5,55 5,25" fill="none" stroke="url(#dt-logo-grad)" stroke-width="2">
+            <animateTransform attributeName="transform" type="rotate" from="0 40 40" to="360 40 40" dur="20s" repeatCount="indefinite"/>
+          </polygon>
+          <text x="40" y="46" text-anchor="middle" fill="url(#dt-logo-grad)" font-size="24" font-weight="700" font-family="Inter, sans-serif">D</text>
+        </svg>
+      </div>
+      <h1>El Futuro de la<br>Automatización Digital</h1>
+      <p style="font-size: 1.2rem; color: #8888aa; max-width: 550px; margin: 0 auto 40px; line-height: 1.7;">
+        Soluciones inteligentes que transforman tu negocio.
+        <span class="dt-typing dt-text-glow" data-texts="Innovación|Tecnología|Resultados|Daytemis" style="color: #00f0ff;"></span>
+      </p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="#productos" class="dt-btn">Explorar Servicios</a>
+        <a href="#contacto" class="dt-btn-outline" style="display: inline-block;">Contactar</a>
+      </div>
+      <div style="display: flex; gap: 50px; justify-content: center; margin-top: 60px; flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">500+</div>
+          <div style="color: #8888aa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px;">Clientes</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">99%</div>
+          <div style="color: #8888aa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px;">Satisfacción</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">24/7</div>
+          <div style="color: #8888aa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px;">Soporte</div>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); text-align: center;">
+      <div style="width: 24px; height: 40px; border: 2px solid rgba(0, 240, 255, 0.3); border-radius: 12px; margin: 0 auto 8px; position: relative;">
+        <div style="width: 4px; height: 8px; background: #00f0ff; border-radius: 2px; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); animation: scrollBounce 1.5s ease-in-out infinite;"></div>
+      </div>
+      <span style="color: #8888aa; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px;">Scroll</span>
+    </div>
+    <style>
+      @keyframes scrollBounce {
+        0%, 100% { opacity: 0; top: 8px; }
+        50% { opacity: 1; top: 20px; }
+      }
+    </style>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <div class="section" id="servicios">
+    <div class="section-header">
+      <div class="section-label">Nuestros servicios</div>
+      <div class="section-title">Soluciones que <span class="dt-gradient-text" style="background: linear-gradient(135deg, #00f0ff, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">impulsan</span> tu negocio</div>
+      <div class="section-subtitle">Tecnología de vanguardia para automatizar, optimizar y escalar tus operaciones digitales.</div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card dt-fade-up">
+        <div class="service-icon">
+          <svg width="28" height="28" fill="none" stroke="#00f0ff" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="service-title">Automatización</div>
+        <div class="service-desc">Optimiza tus procesos con flujos de trabajo automatizados e inteligentes que trabajan 24/7.</div>
+      </div>
+      <div class="service-card dt-fade-up dt-delay-2">
+        <div class="service-icon">
+          <svg width="28" height="28" fill="none" stroke="#7b2fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="service-title">Ahorro de Tiempo</div>
+        <div class="service-desc">Reduce horas de trabajo manual con nuestras soluciones inteligentes y eficientes.</div>
+      </div>
+      <div class="service-card dt-fade-up dt-delay-4">
+        <div class="service-icon">
+          <svg width="28" height="28" fill="none" stroke="#ff2d95" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="service-title">Análisis en Tiempo Real</div>
+        <div class="service-desc">Monitorea métricas clave y toma decisiones basadas en datos reales al instante.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PRODUCTOS ============ -->
+  <div class="section" id="productos">
+    <div class="section-header">
+      <div class="section-label">Tienda</div>
+      <div class="section-title">Productos Destacados</div>
+      <div class="section-subtitle">Los más vendidos de nuestra colección, seleccionados para ti.</div>
+    </div>
+    <div class="products-grid">
+      <!-- Producto 1 -->
+      <div class="product-card dt-fade-up">
+        <div class="product-img">
+          <div class="product-badge">-25%</div>
+          <svg width="80" height="80" fill="none" stroke="#00f0ff" stroke-width="1.5" viewBox="0 0 24 24" opacity="0.4"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Kit Automatización Pro</div>
+          <div class="product-price"><span class="old-price">$199.99</span>$149.99</div>
+        </div>
+        <button class="product-btn dt-btn">Añadir al carrito</button>
+      </div>
+      <!-- Producto 2 -->
+      <div class="product-card dt-fade-up dt-delay-1">
+        <div class="product-img">
+          <svg width="80" height="80" fill="none" stroke="#7b2fff" stroke-width="1.5" viewBox="0 0 24 24" opacity="0.4"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Dashboard Analytics Suite</div>
+          <div class="product-price">$89.99</div>
+        </div>
+        <button class="product-btn dt-btn">Añadir al carrito</button>
+      </div>
+      <!-- Producto 3 -->
+      <div class="product-card dt-fade-up dt-delay-2">
+        <div class="product-img">
+          <div class="product-badge">Nuevo</div>
+          <svg width="80" height="80" fill="none" stroke="#ff2d95" stroke-width="1.5" viewBox="0 0 24 24" opacity="0.4"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">AI Workflow Builder</div>
+          <div class="product-price">$249.99</div>
+        </div>
+        <button class="product-btn dt-btn">Añadir al carrito</button>
+      </div>
+      <!-- Producto 4 -->
+      <div class="product-card dt-fade-up dt-delay-3">
+        <div class="product-img">
+          <svg width="80" height="80" fill="none" stroke="#00f0ff" stroke-width="1.5" viewBox="0 0 24 24" opacity="0.4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Security Shield Pro</div>
+          <div class="product-price">$179.99</div>
+        </div>
+        <button class="product-btn dt-btn">Añadir al carrito</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PROMO BANNERS ============ -->
+  <div class="section">
+    <div class="promo-grid">
+      <div class="promo-banner dt-fade-left">
+        <div class="promo-tag">Oferta especial</div>
+        <div class="promo-title">Black Friday<br>Hasta 70% OFF</div>
+        <a href="#" class="dt-btn" style="display: inline-block; width: fit-content; margin-top: 8px;">Ver ofertas</a>
+      </div>
+      <div class="promo-banner dt-fade-right">
+        <div class="promo-tag" style="color: #ff2d95;">Nueva colección</div>
+        <div class="promo-title">Herramientas AI<br>2026</div>
+        <a href="#" class="dt-btn-outline" style="display: inline-block; width: fit-content; margin-top: 8px;">Explorar</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TESTIMONIAL ============ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-label">Testimonios</div>
+      <div class="section-title">Lo que dicen nuestros clientes</div>
+    </div>
+    <div class="testimonial-card dt-scale-in">
+      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" style="margin-bottom: 20px; opacity: 0.3;">
+        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" fill="#00f0ff"/>
+      </svg>
+      <div class="testimonial-text">"Daytemis transformó completamente nuestro flujo de trabajo. La automatización nos ahorró más de 40 horas semanales. El equipo de soporte es increíble."</div>
+      <div class="testimonial-avatar">MR</div>
+      <div class="testimonial-name">María Rodríguez</div>
+      <div class="testimonial-role">CEO, TechScale Solutions</div>
+    </div>
+  </div>
+
+  <!-- ============ CTA / NEWSLETTER ============ -->
+  <div class="section" id="contacto">
+    <div class="cta-section dt-fade-up">
+      <div class="section-label">Newsletter</div>
+      <div class="section-title" style="margin-bottom: 12px;">Mantente al día</div>
+      <div class="section-subtitle" style="max-width: 500px; margin: 0 auto;">Recibe las últimas novedades en automatización y ofertas exclusivas directamente en tu bandeja.</div>
+      <form class="cta-form" onsubmit="return false;">
+        <input type="email" class="cta-input" placeholder="tu@email.com">
+        <button class="dt-btn" type="submit">Suscribirse</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="preview-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;">DAYTEMIS</div>
+        <p>Automatización digital inteligente para empresas que quieren escalar. Tecnología de vanguardia al alcance de todos.</p>
+      </div>
+      <div>
+        <div class="footer-title">Empresa</div>
+        <ul class="footer-links">
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Carreras</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Productos</div>
+        <ul class="footer-links">
+          <li><a href="#">Automatización</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a href="#">AI Tools</a></li>
+          <li><a href="#">Integraciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Soporte</div>
+        <ul class="footer-links">
+          <li><a href="#">Centro de ayuda</a></li>
+          <li><a href="#">Documentación</a></li>
+          <li><a href="#">API</a></li>
+          <li><a href="#">Estado del sistema</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Daytemis. Todos los derechos reservados.</span>
+      <span>Hecho con tecnología del futuro</span>
+    </div>
+  </footer>
+
+  <!-- Preview badge -->
+  <div class="preview-badge">Preview Mode</div>
+
+  <!-- JS -->
+  <script src="../js/daytemis-futuristic.js"></script>
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      var header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
