@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/odoo", "destination": "/index.html" },
+    { "source": "/odoo/", "destination": "/index.html" }
+  ]
+}
