@@ -22,6 +22,8 @@ encima sin tocar tu operación actual.
    (incluso las que hizo en tu tienda física).
 ✅ Seguimiento automático: avisos de pedido, factura lista, recordatorios.
 ✅ Una sola vista: conversación + cliente + venta + factura, todo enlazado.
+✅ **Artemiz IA aprende sola tu catálogo** desde Odoo: productos, precios y
+   stock. Sin cargas manuales ni capacitaciones largas.
 
 **Lo mejor:** tu Odoo se queda igual. Tu inventario, tus códigos de barras,
 tu POS y tu facturación siguen funcionando exactamente como hoy. Artemiz se

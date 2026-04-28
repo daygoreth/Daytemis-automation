@@ -24,6 +24,9 @@ inventario y los mismos productos que ya tienes cargados.
   lista", recordatorios, promos.
 - **Historial completo:** ves todo lo que el cliente te ha comprado, haya sido
   por WhatsApp o en tu tienda física.
+- **Artemiz IA aprende sola tu catálogo:** no tienes que sentarte a enseñarle
+  qué vendes ni a qué precio. Toma esa información directamente de tu Odoo y
+  se actualiza sola cuando cambias un precio o agregas un producto.
 
 ## Cómo funciona, en simple
 

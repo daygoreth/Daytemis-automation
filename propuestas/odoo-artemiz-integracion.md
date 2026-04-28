@@ -126,6 +126,30 @@ webhooks a Artemiz cuando cambian stock o precio.
   celular, no solo desde la caja.
 - **Trazabilidad completa:** conversación → cotización → venta → factura, todo
   enlazado.
+- **Knowledge base automática para Artemiz IA.** El catálogo de Odoo alimenta
+  directamente al asistente: productos, descripciones, precios, stock. Se
+  ahorra el onboarding manual de "enseñarle" a la IA qué vende el cliente y
+  se elimina el riesgo de información desactualizada (precios viejos,
+  productos descontinuados). Cuando el cliente cambia algo en Odoo, la IA lo
+  sabe en el siguiente sync / webhook.
+
+## Artemiz IA + catálogo de Odoo
+
+La integración no es solo operativa, también es el **pipeline de
+entrenamiento** del asistente conversacional. Casos de uso que se desbloquean
+sin trabajo extra de capacitación:
+
+- "¿Tienen polos talla M en azul?" → la IA consulta stock en vivo en Odoo y
+  responde con disponibilidad real.
+- "¿Cuánto cuesta el modelo X?" → toma el precio vigente del pricelist de
+  Odoo, sin riesgo de cotizar mal.
+- "¿Qué tallas tienen del jean 501?" → lista variantes desde
+  `product.product`.
+- Recomendaciones cruzadas: la IA puede sugerir productos relacionados
+  basándose en categorías y atributos que el cliente ya cargó en Odoo.
+
+Esto reduce el tiempo de implementación por cliente: no hay que sentarse a
+cargar manualmente el catálogo en la IA ni mantenerlo sincronizado a mano.
 
 ## Lo que tenemos que validar antes de cotizar
 
